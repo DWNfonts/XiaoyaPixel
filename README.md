@@ -1,15 +1,12 @@
 # 小雅像素 | XiaoyaPixel
-小雅像素是一款基于[患者長ひっく](https://00ff.booth.pm/)的[マルミーニャ](https://00ff.booth.pm/items/4927023)字体二次修改而得来，更适合简体中文排版。目前该项目还在筹备当中，非汉字部分即将完成，汉字部分正在设计中。  
+小雅像素是一款基于[患者長ひっく](https://00ff.booth.pm/)的[マルミーニャ](https://00ff.booth.pm/items/4927023)字体二次修改而得来，更适合简体中文排版。目前该项目还在筹备当中，非汉字部分即将完成。  
+**注意：部分缺字使用繁体字代替，我需要时间去处理这些事情。您可以点击下方链接，如果你发现某字错形。**  
 请注意：小雅像素支持你任意使用，但他不是开源的。如果你有什么想法，欢迎[参加讨论](https://github.com/DWNfonts/XiaoyaPixel/discussions)。
 
 **要个饭：**[微信](https://github.com/DWNfonts/MuzaiPixel/blob/main/docs/WeChatPay.png) [爱发电](https://afdian.net/@DWNfonts)
 ## 更新日志
-### 0.30721
-* 推翻重来
-* 这样，某些字的字形和之前会有所不同
-
-**0.30721.1**：更正版本号。  
-**0.30721.2**：上传字体并修正 Changelog。~~妈的我怎么了.jpg~~
+### 0.30821
+* 暂时将某些简体字码位添加其繁体字字形。
 
 [旧版更新日志](CHANGELOG.md)
 ## 授权
