@@ -2,8 +2,7 @@
 # -*- coding: UTF-8 -*-
 
 # IDS Reader
-# A library for reading IDS by Yi Bai;
-# A tool for converting IDS to components list.
+# A library for reading IDS by Yi Bai.
 
 # Copyright 2024 DWNfonts
 # Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
