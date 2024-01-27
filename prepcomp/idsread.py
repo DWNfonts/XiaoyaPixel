@@ -29,7 +29,7 @@
 # 超: ⿺走召 - 召 is l.
 # 巫: ⿻工从 - both 工 and 从 are a.
 # There's no conversion of ⿲ (衍: ⿲彳氵亍), ⿳ (京: ⿳亠口小), but they can be described via ⿰ and ⿱.
-# ⿼ (㕚: ⿼叉丶), ⿽ (氷: ⿽水丶) is not supported.
+# ⿼ (㕚: ⿼叉丶), ⿽ (氷: ⿽水丶) is supported now.
 # ⿾ (卐: ⿾卍), ⿿ (𠕄: ⿿凹), and ㇯ (乒: ㇯兵丶) are kept.
 
 # Some glyphs won't fit when you strictly follow the method above.
@@ -37,7 +37,7 @@
 # the glyph name is coded as <Unicode codepoint> + <type> + <variety>.
 # e.g. 劦 in 脇 (type c) → 52a6.c1; ⿰丬夕 in 桨 → 2ff0.4e2c.5915.d1
 
-import list2str
+import list2str, re
 
 
 def chr2ufn(strChar):
@@ -53,15 +53,30 @@ def splitIDS(strIDS):
     dctOutput = {}
     for i in range(len(lstIDS)):
         strIDS = lstIDS[i]
-        a = len(strIDS) - strIDS[::-1].index("(") - 1
-        # a here means the last item of "("
-        # I don't use "re" because it seems to be buggy
-        # https://stackoverflow.com/a/63834895
-        strCountry = strIDS[a + 1 : -1]
-        strContent = strIDS[:a]
-        for j in strCountry.split(","):
-            dctOutput[j] = strContent
+        blnMatch = re.search(r"[^#]\(([U.HMTJKPVBS],)*[U.HMTJKPVBS]\)$", strIDS)
+        # re.match doesn't work. IT'S THE MOST FREAKING THINGS THAT I KNOW.
+        if blnMatch:
+            a = len(strIDS) - strIDS[::-1].index("(") - 1
+            # a here means the last item of "("
+            # I don't use "re" to search it seems to be buggy
+            # I use it to match it w/ (UGHMTJKPVBS)
+            # https://stackoverflow.com/a/63834895
+            strCountry = strIDS[a + 1 : -1]
+            strContent = strIDS[:a]
+            for j in strCountry.split(","):
+                dctOutput[j] = strContent
+        else:
+            dctOutput["default"] = strIDS
     return dctOutput
+
+
+def defaultIDS(dctSpilt):
+    if "j" in dctSpilt:
+        return dctSpilt["j"]
+    elif "." in dctSpilt:
+        return dctSpilt["."]
+    else:
+        return dctSpilt["default"]
 
 
 def objectIDS(strIDS):
@@ -85,7 +100,6 @@ def objectIDS(strIDS):
         if not blnBracket:
             lstOutput.append(strBuffer)
             strBuffer = ""
-        print(strBuffer)
     return lstOutput
 
 
@@ -118,7 +132,8 @@ def partIDS(lstIDS, size):
     return (lstOutput, i)
 
 
-def smartIDS(strIDS):
+def smartIDS(preIDS):
+    strIDS = defaultIDS(preIDS)
     lstIDS = objectIDS(strIDS)
     idc = lstIDS[0][-1]
 
@@ -129,8 +144,12 @@ def smartIDS(strIDS):
             return 2
         if idc in "⿲⿳":
             return 3
+        else:
+            return 0
 
     size = checkSize(idc)
+    if size == 0:
+        return None
     lstPreOutput = partIDS(lstIDS, size)[0]
     lstOutput = []
     # lstOutput = sum(lstPreOutput, [])
@@ -142,3 +161,47 @@ def smartIDS(strIDS):
         else:
             lstOutput.append(list2str.list2str(lstPreOutput))
     return lstOutput
+
+
+def toComp(ids):
+    parted = smartIDS(ids)
+    if parted == None:
+        return None
+    if len(parted) == 2:
+        rawOutput = "".join(parted)
+        return chr2ufn(rawOutput) + ".a"
+    elif len(parted) == 4:
+        # will be seen as ⿰X⿰YZ → X.b,⿰YZ.c#
+        if parted[0] == "⿲":
+            x = chr2ufn(parted[1])
+            y = chr2ufn(parted[2])
+            z = chr2ufn(parted[3])
+            return "%s.b,2ff0.%s%s.c#" % (x, y, z)
+        elif parted[0] == "⿳":
+            x = chr2ufn(parted[1])
+            y = chr2ufn(parted[2])
+            z = chr2ufn(parted[3])
+            return "%s.d,2ff1.%s%s.e#" % (x, y, z)
+    elif len(parted) == 0:
+        return None
+    else:
+        dctMagic = {
+            "⿰": "bc",
+            "⿱": "de",
+            "⿴": "af",
+            "⿵": "ag",
+            "⿶": "ah",
+            "⿷": "ai",
+            "⿸": "aj",
+            "⿹": "ak",
+            "⿺": "al",
+            "⿻": "am",
+            "⿼": "an",
+            "⿽": "ao",
+        }
+        compType = dctMagic[parted[0][-1]]
+        xType = compType[0]
+        yType = compType[1]
+        x = chr2ufn(parted[1])
+        y = chr2ufn(parted[2])
+        return "%s.%s,%s.%s" % (x, xType, y, yType)
