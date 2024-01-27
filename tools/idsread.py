@@ -37,33 +37,108 @@
 # the glyph name is coded as <Unicode codepoint> + <type> + <variety>.
 # e.g. 劦 in 脇 (type c) → 52a6.c1; ⿰丬夕 in 桨 → 2ff0.4e2c.5915.d1
 
+import list2str
+
+
 def chr2ufn(strChar):
     # Char to Unicode Filename
     lstOutput = []
     for i in range(len(strChar)):
-        lstOutput.append('%x' % ord(strChar[i]))
-    return '.'.join(lstOutput)
+        lstOutput.append("%x" % ord(strChar[i]))
+    return ".".join(lstOutput)
+
 
 def splitIDS(strIDS):
-    lstIDS = strIDS.split(';')
+    lstIDS = strIDS.split(";")
     dctOutput = {}
     for i in range(len(lstIDS)):
         strIDS = lstIDS[i]
-        a = len(strIDS) - strIDS[::-1].index('(') - 1
+        a = len(strIDS) - strIDS[::-1].index("(") - 1
         # a here means the last item of "("
         # I don't use "re" because it seems to be buggy
         # https://stackoverflow.com/a/63834895
-        strCountry = strIDS[a+1:-1]
+        strCountry = strIDS[a + 1 : -1]
         strContent = strIDS[:a]
-        for j in strCountry.split(','):
+        for j in strCountry.split(","):
             dctOutput[j] = strContent
     return dctOutput
 
-def apartIDS(strIDS):
-    # todo - return None
+
+def objectIDS(strIDS):
     # some components are:
     # #(xxx): a component which is too hard to describe via IDS, and it's not in Unicode;
     # [xxx]: describe the component next to it;
     # {xxx}: describe the component next to it.
     # these or "#[{" can be in the start of a IDS.
-    return None
+    blnBracket = False
+    strBuffer = ""
+    lstOutput = []
+    for i in range(len(strIDS)):
+        a = strIDS[i]
+        strBuffer += a
+        if a in "#[{":
+            blnBracket = True
+        if a == ")":
+            blnBracket = False
+        if strIDS[i - 1] in "]}":
+            blnBracket = False
+        if not blnBracket:
+            lstOutput.append(strBuffer)
+            strBuffer = ""
+        print(strBuffer)
+    return lstOutput
+
+
+def partIDS(lstIDS, size):
+    a = 1
+    layer = 0
+    lstOutput = []
+    strBuffer = ""
+    i = 0
+    idc = lstIDS[i]
+    lstOutput.append(idc)
+    i += 1
+    for j in range(size):
+        comp = lstIDS[i]
+        if comp[-1] in "⿾⿿":
+            b = partIDS(lstIDS[i:], 1)
+            lstOutput.append(b[0])
+            i += b[1]
+        elif comp[-1] in "⿰⿱⿴⿵⿶⿷⿸⿹⿺⿻⿼⿽":
+            b = partIDS(lstIDS[i:], 2)
+            lstOutput.append(b[0])
+            i += b[1]
+        elif comp[-1] in "⿲⿳":
+            b = partIDS(lstIDS[i:], 3)
+            lstOutput.append(b[0])
+            i += b[1]
+        else:
+            lstOutput.append(comp)
+            i += 1
+    return (lstOutput, i)
+
+
+def smartIDS(strIDS):
+    lstIDS = objectIDS(strIDS)
+    idc = lstIDS[0][-1]
+
+    def checkSize(idc):
+        if idc in "⿾⿿":
+            return 1
+        if idc in "⿰⿱⿴⿵⿶⿷⿸⿹⿺⿻⿼⿽":
+            return 2
+        if idc in "⿲⿳":
+            return 3
+
+    size = checkSize(idc)
+    lstPreOutput = partIDS(lstIDS, size)[0]
+    lstOutput = []
+    # lstOutput = sum(lstPreOutput, [])
+    # https://stackoverflow.com/a/716489
+    for i in range(len(lstPreOutput)):
+        entry = lstPreOutput[i]
+        if isinstance(entry, str):
+            lstOutput.append(entry)
+        else:
+            lstOutput.append(list2str.list2str(lstPreOutput))
+    return lstOutput
