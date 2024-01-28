@@ -26,10 +26,44 @@ with open("ids_lv2.txt", encoding="UTF-8") as f:
         for line in f:
             lstLine = line.split("\t")
             entry = lstLine[0]
-            ziLiIDS = ir.splitIDS(lstLine[1])
+            ziLiIDS = ir.defaultIDS(lstLine[1])
             if entry in charList:
                 toOutput = ir.toComp(ziLiIDS)
                 if toOutput != None:
                     g.write("%s\t%s\n" % (entry, toOutput))
                 else:
                     g.write("%s\t%s.a\n" % (entry, ir.chr2ufn(entry)))
+with open("comps.txt", "r", encoding="UTF-8") as f:
+    with open("comps1.txt", "w", encoding="UTF-8") as g:
+        lstBuffer = []
+        for line in f:
+            lstLine = line.split("\t")
+            entry = lstLine[0]
+            lstComps = lstLine[1].strip("\n").split(",")
+            for item in lstComps:
+                if item not in lstBuffer:
+                    g.write(item + "\n")
+                lstBuffer.append(item)
+
+with open("comps1.txt") as f:
+    with open("compsr.txt", "w", encoding="UTF-8") as g:
+        for line in f:
+            comps = line.split(".")
+            strCompReadable = ""
+            for comp in comps:
+                try:
+                    numUni = eval("0x" + comp)
+                    if numUni in range(0xA, 0x10):
+                        strCompReadable += comp
+                    else:
+                        strCompReadable += chr(numUni)
+                except:
+                    strCompReadable += comp
+            strCompReadable = strCompReadable.strip("\n")
+            searchLine = line.strip("\n")
+            hanziDetected = ""
+            with open("comps.txt", encoding="UTF-8") as file:
+                for entry in file:
+                    if searchLine in entry:
+                        hanziDetected += entry.split("\t")[0]
+            g.write("%s\t%s\t%s\n" % (searchLine, strCompReadable, hanziDetected))

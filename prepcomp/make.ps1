@@ -1,2 +1,2 @@
 python chrset.py charlist.txt
-python gencomps.py
+python gnallcmp.py

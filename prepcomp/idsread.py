@@ -64,17 +64,30 @@ def splitIDS(strIDS):
             strCountry = strIDS[a + 1 : -1]
             strContent = strIDS[:a]
             for j in strCountry.split(","):
-                dctOutput[j] = strContent
+                dctOutput[j.strip(")")] = strContent
         else:
             dctOutput["default"] = strIDS
     return dctOutput
 
 
-def defaultIDS(dctSpilt):
-    if "j" in dctSpilt:
-        return dctSpilt["j"]
+def defaultIDS(preSpilt):
+    dctSpilt = splitIDS(preSpilt)
+    if "J" in dctSpilt:
+        return dctSpilt["J"]
+    elif "S" in dctSpilt:
+        return dctSpilt["S"]
+    elif "K" in dctSpilt:
+        return dctSpilt["K"]
+    elif "U" in dctSpilt:
+        return dctSpilt["U"]
+    elif "B" in dctSpilt:
+        return dctSpilt["B"]
     elif "." in dctSpilt:
         return dctSpilt["."]
+    elif "H" in dctSpilt:
+        return dctSpilt["H"]
+    elif "T" in dctSpilt:
+        return dctSpilt["T"]
     else:
         return dctSpilt["default"]
 
@@ -159,7 +172,7 @@ def smartIDS(preIDS):
         if isinstance(entry, str):
             lstOutput.append(entry)
         else:
-            lstOutput.append(list2str.list2str(lstPreOutput))
+            lstOutput.append(list2str.list2str(lstPreOutput[i]))
     return lstOutput
 
 
@@ -176,12 +189,12 @@ def toComp(ids):
             x = chr2ufn(parted[1])
             y = chr2ufn(parted[2])
             z = chr2ufn(parted[3])
-            return "%s.b,2ff0.%s%s.c#" % (x, y, z)
+            return "%s.b,2ff0.%s.%s.c#" % (x, y, z)
         elif parted[0] == "⿳":
             x = chr2ufn(parted[1])
             y = chr2ufn(parted[2])
             z = chr2ufn(parted[3])
-            return "%s.d,2ff1.%s%s.e#" % (x, y, z)
+            return "%s.d,2ff1.%s.%s.e#" % (x, y, z)
     elif len(parted) == 0:
         return None
     else:
