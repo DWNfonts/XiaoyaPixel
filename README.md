@@ -12,7 +12,7 @@
 
 [旧版更新日志](CHANGELOG.md)
 ## 授权
-版权 2023 [hicc](https://hicchicc.github.io/00ff)、[DWNfonts](https://github.com/DWNfonts).
+版权 2023-2024 [hicc](https://hicchicc.github.io/00ff)、[DWNfonts](https://github.com/DWNfonts).
 
 字体生成的所有数据均可免费使用。 表达的内容和媒介也不受限制。  
 也可以发布包含 .ttf 文件的游戏版本并用于商业用途。
