@@ -3,7 +3,7 @@
 **注意：部分缺字使用繁体字代替，我需要时间去处理这些事情。您可以点击下方链接，如果你发现某字错形。**  
 如果你有什么想法，欢迎[参加讨论](https://github.com/DWNfonts/XiaoyaPixel/discussions)。
 
-**要个饭：**[微信](https://github.com/DWNfonts/MuzaiPixel/blob/main/docs/WeChatPay.png) [爱发电](https://afdian.net/@DWNfonts)
+**要个饭：**[*首先给原作者 hicc！*](https://00ff.booth.pm/items/4927023) [微信](https://github.com/DWNfonts/MuzaiPixel/blob/main/docs/WeChatPay.png) [爱发电](https://afdian.net/@DWNfonts)
 ## 更新日志
 ### 0.30821
 * 暂时将某些简体字码位添加其繁体字字形。
