@@ -1,29 +1,12 @@
-# 小雅像素 | XiaoyaPixel
-小雅像素是一款基于[患者長ひっく](https://00ff.booth.pm/)的[マルミーニャ](https://00ff.booth.pm/items/4927023)字体二次修改而得来，更适合简体中文排版。目前该项目还在筹备当中，非汉字部分即将完成。  
-**注意：部分缺字使用繁体字代替，我需要时间去处理这些事情。您可以点击下方链接，如果你发现某字错形。**  
+![小雅像素 | XiaoyaPixel](https://img.itch.zone/aW1nLzEyODg1MjU0LnBuZw==/original/8y0V7x.png)  
+[![QQ 群：619164913](https://img.shields.io/badge/619164913-%2312B7F5?style=for-the-badge&logo=tencentqq&logoColor=white)](https://qm.qq.com/q/m3j4G5YGsw)
+[![itch.io](https://img.shields.io/badge/itch.io-%23FF0B34.svg?style=for-the-badge&logo=Itch.io&logoColor=white)](https://diaowinner.itch.io/xiaoyapixel)
+[![爱发电](https://img.shields.io/badge/%E7%88%B1%E5%8F%91%E7%94%B5-%23946CE6.svg?style=for-the-badge&logoColor=white)](http://afdian.net/a/DWNfonts)
+[![查看授权](https://img.shields.io/badge/查看授权-%2300A7E1?style=for-the-badge&logoColor=white)](LICENSE.md)
+[![支持原作](https://img.shields.io/badge/支持原作-orange?style=for-the-badge&logoColor=white)](https://00ff.booth.pm/items/4927023)
+
+---
+小雅像素是一款基于[患者長ひっく](https://00ff.booth.pm/)的[マルミーニャ](https://00ff.booth.pm/items/4927023)字体二次修改而得来，更适合简体中文排版。目前该项目正在制作中。  
+本字体大部分字形使用[生雅](https://github.com/DWNfonts/Project-Rawya)自动生成。   
+**注意：部分缺字使用繁体字代替，我需要时间去处理这些事情。如果你发现某字错形可以点击下方链接。**  
 如果你有什么想法，欢迎[参加讨论](https://github.com/DWNfonts/XiaoyaPixel/discussions)。
-
-**要个饭：**[*首先给原作者 hicc！*](https://00ff.booth.pm/items/4927023) [微信](https://github.com/DWNfonts/MuzaiPixel/blob/main/docs/WeChatPay.png) [爱发电](https://afdian.net/@DWNfonts)
-## 更新日志
-### 0.30821
-* 暂时将某些简体字码位添加其繁体字字形。
-### 0.40127
-* 里程碑 1 的第一个构建
-
-[旧版更新日志](CHANGELOG.md)
-## 授权
-版权 2023-2024 [hicc](https://hicchicc.github.io/00ff)、[DWNfonts](https://github.com/DWNfonts).
-
-字体生成的所有数据均可免费使用。 表达的内容和媒介也不受限制。  
-也可以发布包含 .ttf 文件的游戏版本并用于商业用途。
-
-也可以进行加工、修改和再分发，但不放弃字体的版权。  
-本网站发布的所有字体和修改数据的版权均归作者所有。  
-无论字体是否经过加工或修改，都不能声称自己是字体的作者。  
-(因此，出售字体本身或任何类似行为都是非法的，因此是被禁止的）。
-
-您可以注明或不注明使用字体的来源或出处。  
-我们不对使用或表现字体的任何媒体的内容或意识形态负责。  
-此外，万一因使用字体而造成任何损失，我们也不会支付任何赔偿。
-
-这些条款和条件如有变更，恕不另行通知，但不会对字体的使用收取费用。
