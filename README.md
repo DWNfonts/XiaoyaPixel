@@ -1,7 +1,7 @@
 ![小雅像素 | XiaoyaPixel](https://img.itch.zone/aW1nLzEyODg1MjU0LnBuZw==/original/8y0V7x.png)  
 [![QQ 群：619164913](https://img.shields.io/badge/619164913-%2312B7F5?style=for-the-badge&logo=tencentqq&logoColor=white)](https://qm.qq.com/q/m3j4G5YGsw)
 [![itch.io](https://img.shields.io/badge/itch.io-%23FF0B34.svg?style=for-the-badge&logo=Itch.io&logoColor=white)](https://diaowinner.itch.io/xiaoyapixel)
-[![爱发电](https://img.shields.io/badge/%E7%88%B1%E5%8F%91%E7%94%B5-%23946CE6.svg?style=for-the-badge&logoColor=white)](http://afdian.net/a/DWNfonts)
+[![爱发电](https://img.shields.io/badge/%E7%88%B1%E5%8F%91%E7%94%B5-%23946CE6.svg?style=for-the-badge&logoColor=white)](http://afdian.com/a/DWNfonts)
 [![查看授权](https://img.shields.io/badge/查看授权-%2300A7E1?style=for-the-badge&logoColor=white)](LICENSE.md)
 [![支持原作](https://img.shields.io/badge/支持原作-orange?style=for-the-badge&logoColor=white)](https://00ff.booth.pm/items/4927023)
 
