@@ -52,7 +52,7 @@ with open("comps1.txt") as f:
             strCompReadable = ""
             for comp in comps:
                 try:
-                    numUni = eval("0x" + comp)
+                    numUni = int(comp, 16)
                     if numUni in range(0xA, 0x10):
                         strCompReadable += comp
                     else:
